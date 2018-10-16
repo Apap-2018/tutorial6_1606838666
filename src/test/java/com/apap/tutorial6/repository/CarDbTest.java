@@ -34,6 +34,7 @@ public class CarDbTest {
 	
 	@Test
 	public void whenFindByType_thenReturnCar() {
+		// Given
 		DealerModel dealerModel = new DealerModel();
 		dealerModel.setNama("Rendezvous");
 		dealerModel.setAlamat("Elan Plateau");
@@ -50,8 +51,10 @@ public class CarDbTest {
 		entityManager.persist(carModel);
 		entityManager.flush();
 
+		// When
 		Optional<CarModel> found = carDb.findByType(carModel.getType());
 
+		// Then
 		assertThat(found.get(), Matchers.notNullValue());
 		assertThat(found.get(), Matchers.equalTo(carModel));
 	}
